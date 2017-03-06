@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>响应式布局简历</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html{
+			height: 100%;
+			font-size: 62.5%;
+			color: #222;
+		}
+		::selection{
+			background-color: #b3D4FC;
+			text-shadow: none;
+		}
+		.clearfix:before,
+		.clearfix:after {
+		    content: " ";
+		    display: table;
+		}
+
+		.clearfix:after {
+		    clear: both;
+		}
+		
+		body{
+			height: 100%;
+		}
+		header{
+			width: 100%;
+			height: 100%;
+			background-color: #7AB3EC;
+			text-align: center;
+		}
+		header h1{
+			font-size: 5rem;
+			padding-top: 50%;
+			transform: translateY(-50%);
+		}
+		#side{
+			width: 15%;
+			display: none;
+			color: black;
+			font-size: 2.5rem;
+			margin: 1rem 0 0 2rem;
+			position: fixed;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+		#side ul{
+			height: 100%;
+			text-align: center;
+			line-height: 2.3;
+		}
+		#side ul li{
+			list-style: none;
+			margin-bottom: 1rem;
+			cursor: pointer;
+
+		}
+		section{
+			width: 70%;
+			padding: 1rem 1rem;
+			background-color: #E6E1E1;
+			margin: 0 25% 0;
+		}
+		section + section{
+			border-top: 1rem solid #0C61DA;
+		}
+		.content1 .info{
+			float: left;
+			width: 45%;
+			padding: 1rem;
+			position: relative;
+		}
+		.content1 .info .demo,.img,.border{
+			width: 30rem;
+			height: 30rem;
+			border-radius: 50%;
+		}
+		.content1 .info .demo{
+			position: relative;
+			display: block;
+		}
+		.content1 .info .img{
+			background-size: cover;
+			background-position: 50% 50%;
+
+		}
+		.content1 .info .border{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		.content1 .info .border{
+			box-sizing: border-box;
+			border: 10px solid #4AD274;
+			border-left-color: #e07514;
+			border-top-color: #e07514;
+			transition: all 0.3s ease-in;
+		}
+		.content1 .info .demo:hover .border{
+			transform: rotate(180deg);
+		}
+		.content1 .info:nth-child(2){
+			padding-top: 15%;
+			text-align: center;
+			height: 30rem;
+			font-size: 3rem;
+			box-sizing: border-box;
+		}
+
+		.content2 h1{
+			text-align: left;
+			font-size: 4rem;
+			padding: 2rem 0;
+		}
+		.content2 p{
+			text-indent: 2em;
+			font-size: 2.4rem;
+		}
+		.content2 ol li{
+			text-indent: 2em;
+			list-style: none;
+			font-size: 2.4rem;
+		}
+		.content3 .item{
+			width: 45%;
+			float: left;
+		}
+		.content3 .item:nth-child(2){
+			float: right;
+		}
+		.content3 .item h1,p{
+			font-size: 4rem;
+			text-align: center;
+			padding-bottom: 2rem; 
+		}
+		.content3 .item p{
+			font-size: 3.2rem;
+		}
+		.content3 .item .bar{
+			/*text-align: center;*/
+			margin-left: 10%;
+			height: 30px;
+			width: 80%;
+			border-radius: 15px;
+			background-color: white;
+		}
+		.content3 .item .bar + .bar{
+			margin-top: 4rem;
+		}
+		.content3 .item .bar span{
+			position: relative;
+			border-radius: 15px;
+			display: block;
+			height: 100%;
+		}
+		.content3 .item .bar .html{
+			width: 83%;
+			background-color: yellow;
+		}
+		.content3 .item .bar .html:hover{
+			animation: gotoH 1s;
+		}
+		@keyframes gotoH{
+			0%{width: 0;}
+			100%{width: 83%}
+		}
+		@-moz-keyframes gotoH{
+			0%{width: 0;}
+			100%{width: 83%}
+		}
+		@-webkit-keyframes gotoH{
+			0%{width: 0;}
+			100%{width: 83%}
+		}
+		@-o-keyframes gotoH{
+			0%{width: 0;}
+			100%{width: 83%}
+		}
+		.content3 .item .bar .html:before{
+			content: "html";
+			font-weight: bold;
+			font-size: 2rem;
+			position: absolute;
+			top: -90%;
+		}
+		.content3 .item .bar .css{
+			width: 80%;
+			background-color: blue;
+		}
+		.content3 .item .bar .css:hover{
+			animation: gotoC 1s;
+		}
+		@keyframes gotoC{
+			0%{width: 0;}
+			100%{width: 80%}
+		}
+		@-moz-keyframes gotoC{
+			0%{width: 0;}
+			100%{width: 80%}
+		}
+		@-webkit-keyframes gotoC{
+			0%{width: 0;}
+			100%{width: 80%}
+		}
+		@-o-keyframes gotoC{
+			0%{width: 0;}
+			100%{width: 80%}
+		}
+		.content3 .item .bar .css:before{
+			content: "css";
+			font-weight: bold;
+			font-size: 2rem;
+			position: absolute;
+			top: -90%;
+		}
+		.content3 .item .bar .javascript{
+			width: 64%;
+			background-color: green;
+		}
+		.content3 .item .bar .javascript:hover{
+			animation: gotoJ 1s;
+		}
+		@keyframes gotoJ{
+			0%{width: 0;}
+			100%{width: 64%}
+		}
+		@-moz-keyframes gotoJ{
+			0%{width: 0;}
+			100%{width: 64%}
+		}
+		@-webkit-keyframes gotoJ{
+			0%{width: 0;}
+			100%{width: 64%}
+		}
+		@-o-keyframes gotoJ{
+			0%{width: 0;}
+			100%{width: 64%}
+		}
+		.content3 .item .bar .javascript:before{
+			content: "javascript";
+			font-weight: bold;
+			font-size: 2rem;
+			position: absolute;
+			top: -90%;
+		}
+		.content3 .item .bar .jquery{
+			width: 75%;
+			background-color: #52520E;
+		}
+		.content3 .item .bar .jquery:hover{
+			animation: gotoJq 1s;
+		}
+		@keyframes gotoJq{
+			0%{width: 0;}
+			100%{width: 75%}
+		}
+		@-moz-keyframes gotoJq{
+			0%{width: 0;}
+			100%{width: 75%}
+		}
+		@-webkit-keyframes gotoJq{
+			0%{width: 0;}
+			100%{width: 75%}
+		}
+		@-o-keyframes gotoJq{
+			0%{width: 0;}
+			100%{width: 75%}
+		}
+		.content3 .item .bar .jquery:before{
+			content: "jquery";
+			font-weight: bold;
+			font-size: 2rem;
+			position: absolute;
+			top: -90%;
+		}
+		.content3 .item .bar .xysbj{
+			width: 71%;
+			background-color: #1C5248;
+		}
+		.content3 .item .bar .xysbj:hover{
+			animation: gotoX 1s;
+		}
+		@keyframes gotoX{
+			0%{width: 0;}
+			100%{width: 71%}
+		}
+		@-moz-keyframes gotoX{
+			0%{width: 0;}
+			100%{width: 71%}
+		}
+		@-webkit-keyframes gotoX{
+			0%{width: 0;}
+			100%{width: 71%}
+		}
+		@-o-keyframes gotoX{
+			0%{width: 0;}
+			100%{width: 71%}
+		}
+		.content3 .item .bar .xysbj:before{
+			content: "响应式布局";
+			width: 140px;
+			font-weight: bold;
+			font-size: 2rem;
+			position: absolute;
+			top: -90%;
+		}
+		.content4 h1{
+			text-align: center;
+			font-size: 4rem;
+			padding: 3rem;
+		}
+		.content4 a img{
+			display: inline-block;
+			width: 32%;
+			transition: all 0.3s;
+		}
+		.content4 a img:hover{
+			transform: scale(1.2);
+		}
+		footer h2{
+			background: black;
+			color: white;
+			text-align: center;
+			font-size: 3rem;
+		}
+		#goTop{
+			width: 30px;
+			height: 30px;
+			background-color: rgba(255,255,255,0.1);
+			display: none;
+			position: fixed;
+			bottom: 1rem;
+			right: 1rem;
+			cursor: pointer;
+		}
+		.on{
+			background-color: #28CEE6;
+			color: white;
+		}
+		@media only screen and  (max-width: 75em){
+			.content1 .info .demo,.img,.border{
+				width: 20rem;
+				height: 20rem;
+			}
+			.content1 .info:nth-child(2){
+				padding-top: 5%;
+				font-size: 1.5rem;
+				height: 20rem;
+			}
+			#goTop{
+				display: none;
+			}
+		}
+		@media only screen and  (max-width: 53.75em){
+			#side{
+				display: none;
+				visibility: hidden;
+			}
+			#goTop{
+				display: block;
+			}
+			section{
+				width: 95%;
+				margin: 0 auto;
+			}
+			.content2 h1{
+				text-align: center;
+			}
+			.content3 .item{
+				padding-top: 2rem;
+				width: 100%;
+			}
+			.content4 a{
+				display: block;
+				text-align: center;
+				margin: 1rem auto;
+				width: 85%;
+				height: ;
+			}
+			.content a img{
+				width: 100%;
+			}
+		}
+		@media only screen and  (max-width: 34em){
+			.content1 .info{
+				width: 90%;
+				margin:0 auto;
+			}
+			.content1 .info .demo{
+				margin:0 auto;
+			}
+			.content2 h1{
+				font-size: 2.5rem;
+			}
+			.content2 p,.content2 ol li{
+				font-size: 1.6rem;
+			}
+			/*.content2 ol li{
+				font-size: 1.6rem;
+			}*/
+			.content3 .item h1{
+				font-size: 3rem;
+			}
+			.content3 .item p{
+				font-size: 2.5rem;
+			}
+		}
+ 	</style>
+</head>
+<body>
+	<header>
+		<h1>2017<br><span> 新的开始</span></h1>
+		<!-- <p>新的开始</p> -->
+	</header>
+
+	<nav id="side">
+		<ul>
+			<li>首页</li>
+			<li class="on">我的资料</li>
+			<li>自我描述</li>
+			<li>个人技能</li>
+			<li>作战展示</li>
+		</ul>
+	</nav>
+
+	<section class="content1 clearfix">
+		<div class="info">
+			<a href="#" class="demo">
+				<div class="img" style="background-image: url(img/image.png);"></div>
+				<div class="border"></div>
+			</a>
+		</div>
+		<div class="info">
+			<p>邓杰</p>
+			<p>24岁</p>
+			<p>WEB前端工程师</p>
+		</div>
+	</section>
+
+	<section class="content2">
+		<h1>自我评价</h1>
+		<p>掌握面相对象编程思想，深入理解html,css和JavaScript，
+			掌握BOM,DOM操作，能熟练运用jQuery开发框架。
+			本人做事认真，有很强的时间观念和纪律观念。
+			有良好的编程习惯，具有较强的团队合作精神。
+			善于自学，富有创新精神，对新事物有很强的接收能力。
+		</p>
+		<h1>工作经验</h1>
+		<p>
+			毕业后在深圳中航信息就职，在该公司主要负责北京大学深圳医院的打印机设备的安装、调试和维护，并记录下打印机型号及相关问题。 主要工作有:</p>
+		<ol>
+			<li>1.为科室安装新的打印机，及完成相关的调试;</li>
+			<li>2.为误操作打印机后不能正常打印的打印机完成相关设置，使其能恢复工作;</li>
+			<li>3.为有需求的科室配置网络打印机(外网)及共享打印机设置(内网)。</li>
+		</ol>
+	</section>
+
+	<section class="content3 clearfix">
+		<div class="item">
+			<h1>技能掌握</h1>
+			<div class="bar"><span class="html"></span></div>
+			<div class="bar"><span class="css"></span></div>
+			<div class="bar"><span class="javascript"></span></div>
+			<div class="bar"><span class="jquery"></span></div>
+			<div class="bar"><span class="xysbj"></span></div>
+		</div>
+		<div class="item">
+			<h1>技能证书</h1>
+			<p>CET-4级证书</p>
+			<p>全国计算机二级证书</p>
+			<p>驾驶执照</p>
+		</div>
+	</section>
+
+	<section class="content4">
+		<h1>作品展示</h1>
+		<a href="calculator.html" target="_blank"><img src="img/calculator.png" alt="简单计算器" title="简单计算器"></a>
+		<a href="clock.html"><img src="img/clock.png" alt="时钟" title="时钟"></a>
+		<a href="calendar.html"><img src="img/calendar.png" alt="万年历查询" title="万年历查询"></a>
+	</section>
+	<footer>
+		<h2>该页面采用了响应式设计，谢谢查看我的简历!</h2>
+	</footer>
+	<div id="goTop" style="background-image: url(img/goTop.png); display: none;"></div>
+	<script src="jq/jquery.js"></script>
+	<script>
+		window.onresize=function(){
+			location=location;
+		}; 
+		$(function(){
+			var $h=$("header").height();
+			var $w=$(window).width();
+			// console.log($w);
+			$(window).scroll(function(){
+				var $h_=$(window).scrollTop();
+				if ($h_>=$h&&$w>=860) {
+					$("#side").show();
+				}else{
+					$("#side").hide();
+				};
+				if ($h_>=$h&&$w<=860){
+					$("#goTop").show();
+				}else{
+					$("#goTop").hide();
+				};
+			});
+			$("#goTop").click(function(){
+				$("html,body").animate({scrollTop:0}, 500);
+			});
+			$("#side ul li").click(function(){
+				$(this).addClass("on").siblings().removeClass("on");
+				var i=$(this).index();
+				if (i==0) {
+					$("html,body").animate({scrollTop:0}, 500);
+				}else{
+					var oh=$("section").eq(i-1).offset().top;
+					$("html body").animate({scrollTop:oh},800);
+				}
+				
+			});
+		});
+	</script>
+</body>
+</html>
