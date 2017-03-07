@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="mycanvas" height="500" width="500"></canvas>
+	<script type="text/javascript">
+		var mycanvas=document.getElementById("mycanvas");
+		var context=mycanvas.getContext("2d");
+		function timer(){
+			context.clearRect(0, 0, mycanvas.width, mycanvas.height);
+			context.beginPath();
+			context.strokeStyle="black";
+			context.lineWidth=10;
+			// 表盘镜像渐变对象
+			var grd=context.createRadialGradient(250, 250, 20, 250, 250, 210);
+			grd.addColorStop(0.1, "rgb(59,200,200)");
+			grd.addColorStop(1, "rgb(67,150,180)");
+			context.arc(250, 250, 210, 0, Math.PI*2);
+			context.fillStyle=grd;
+			context.fill();
+			context.stroke();
+			context.closePath();
+
+			// 绘制刻度
+			for(var i=0;i<60;i++){
+				context.save();
+				context.beginPath();
+				// 将画布的左上角坐标位移到250,250
+				context.translate(250, 250);
+				context.rotate(i*6*Math.PI/180);
+				context.lineWidth=4;
+				context.strokeStyle="red";
+				context.moveTo(180, 0);
+				context.lineTo(195, 0);
+				context.stroke();
+				context.closePath();
+				//还原状态
+				context.restore();
+			}
+
+			// 绘制小时的刻度
+			for(var i=1;i<=12;i++){
+				context.save();
+				context.beginPath();
+				// 将画布的左上角坐标位移到250,250
+				context.translate(250, 250);
+				context.rotate(i*30*Math.PI/180);
+				context.lineWidth=5;
+				context.strokeStyle="black";
+				context.moveTo(170, 0);
+				context.lineTo(195, 0);
+				context.stroke();
+				context.closePath();
+				//还原状态
+				context.restore();
+			}
+
+
+			// 绘制小时的刻度
+			for(var i=1;i<=12;i++){
+				context.save();
+				context.beginPath();
+				// 将画布的左上角坐标位移到250,250
+				context.translate(250, 250);
+				context.rotate(i*30*Math.PI/180);
+				context.fillStyle="black";
+				context.font="20px 宋体";
+				context.fillText(i, -4,-150);			
+				context.closePath();
+				//还原状态
+				context.restore();
+			}
+
+
+			// 获取系统时间
+			var time=new Date();
+			var h=time.getHours();
+			var m=time.getMinutes();
+			var s=time.getSeconds();
+
+			//时针
+
+			context.save();
+			context.beginPath();
+			context.translate(250, 250);
+			// 时针在的弧度需要他自己的弧度+分钟走过的弧度
+			// 每一个小时时针走过5个刻度
+			// 60分钟，30度，要将30度分成60份
+			// Math.PI/180*(30/60)*m
+			// 分钟走过的度：m*Math.PI/360
+			context.rotate(m*Math.PI/360 + h*30*Math.PI/180);
+			context.lineWidth=10;
+			context.lineCap="round";
+			context.strokeStyle="green";
+			context.moveTo(0, 0);
+			context.lineTo(0,-100);
+			context.stroke();
+			context.restore();
+
+			//分针
+			context.save();
+			context.beginPath();
+			context.translate(250, 250);
+			// 自己的度数+秒针走过的度数
+			// 秒针走过的度数：s*Math.PI/1800
+			context.rotate(s*Math.PI/1800+m*6*Math.PI/180);
+			context.strokeStyle="pink";
+			context.lineWidth=7;
+			context.lineCap="round";
+			context.moveTo(0, 0);
+			context.lineTo(0,-120);
+			context.stroke();
+			context.restore();
+			//秒针
+			context.save();
+			context.beginPath();
+			context.translate(250, 250);
+			context.rotate(s*6*Math.PI/180);
+			context.strokeStyle="yellow";
+			context.lineWidth=4;
+			context.lineCap="round";
+			context.moveTo(0, 0);
+			context.lineTo(150,0);
+			context.stroke();
+			context.restore();
+		}
+		timer();
+		setInterval(timer, 1000);
+
+
+
+
+
+
+	</script>
+</body>
+</html>
